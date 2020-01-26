@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'agence'
+  database: 'agence1'
   //   ,port:3306
 });
 
