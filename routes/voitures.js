@@ -28,6 +28,17 @@ router.post('/search', function (req, res) {
 
 });
 
+router.get('/search', function (req, res) {
+  var s = req.query.search
+  var query = "SELECT * from  voiture where marque like '%" + s + "%' or modele like '%" + s + "%'   or matricule like '%" + s + "%'"
+
+  console.log(query);
+  connection.query(query, function (error, results, fields) {
+    res.render('voitures', { list: results, listLength: results.length });
+  });
+
+});
+
 router.post('/delete', function (req, res ) {
   
   connection.query('delete  from  voiture where id =' + req.body.idValue, function (error, results, fields) {

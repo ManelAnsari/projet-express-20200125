@@ -28,6 +28,8 @@ app.use('/clients', clientsRouter);
 app.use('/voitures', voituresRouter);
 app.use('/locations', locationsRouter);
 
+//authentification
+// https://www.freecodecamp.org/news/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52/
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

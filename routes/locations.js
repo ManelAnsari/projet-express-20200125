@@ -17,8 +17,10 @@ router.get('/',  function (req, res) {
   +' voiture.matricule as matricule, client.cin as cin ,  '
   +'(location.end-location.start)*voiture.prixJr  as prixTotal FROM  location ' 
   +' INNER JOIN  voiture on voiture.id=location.idV INNER JOIN  client on client.id=location.idC '
-  var querylistVoitures ='select id as idVOITURE,matricule from voiture'
-  var querylistClients ='select id as idCLIENT,cin from client'
+ 
+   var querylistVoitures = 'SELECT id as idVOITURE , matricule from voiture where id not in (select idV from location)'
+   
+   var querylistClients ='select id as idCLIENT,cin from client'
 
   connection.query( query,function( err, results,fields )  {
     
@@ -64,10 +66,7 @@ router.post('/delete', function (req, res ) {
 });
 
 
-
-
-
-
+//insert or update selon 
 router.post('/upsert', function (req, res ) {
   var obj = req.body;
   var datalocation = []
@@ -79,7 +78,6 @@ router.post('/upsert', function (req, res ) {
   datalocation[3] = obj.start
   datalocation[4] = obj.end
 
-  console.log( obj.start)
 	console.log(datalocation)
 
 

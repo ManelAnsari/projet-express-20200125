@@ -28,6 +28,17 @@ router.post('/search', function (req, res) {
 
 });
 
+router.get('/search', function (req, res) {
+  var s = req.query.search
+  var query = "SELECT * from  client where nom like '%" + s + "%' or prenom like '%" + s + "%'   or cin like '%" + s + "%'"
+
+  console.log(query);
+  connection.query(query, function (error, results, fields) {
+    res.render('clients', { list: results, listLength: results.length });
+  });
+
+});
+
 router.post('/delete', function (req, res ) {
   
   connection.query('delete  from  client where id =' + req.body.idValue, function (error, results, fields) {

@@ -81,7 +81,7 @@
                     </td>
                     <td>
                         <form action="/clients/delete" method="post">
-                            <input hidden type="text" name="idValue" value="<%=list[i].id%>">
+                            <input hidden type="text" name="idValue" value="<%-list[i].id%>">
                             </input>
                             <input type="submit" value="Delete" class="btn btn-danger" />
                         </form>
@@ -109,10 +109,10 @@
                     </tr>
                     <tr>
                         <input type="text" name="id" hidden>
-                        <td> <input type="text" name="cin" required></td>
+                        <td> <input type="number" name="cin" required></td>
                         <td> <input type="text" name="nom" required></td>
                         <td> <input type="text" name="prenom" required></td>
-                        <td> <input type="text" name="tel" required></td>
+                        <td> <input type="number" name="tel"  required></td>
                     </tr>
                 </table>
                 <input type="submit" value="submit" class="btn btn-success mr-2">

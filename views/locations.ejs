@@ -20,12 +20,11 @@
     <script>
         function edit(obj) {
             // console.log(JSON.stringify(obj));
-            document.getElementsByName('id')[0].value = obj['id']
-            document.getElementsByName('matricule')[0].value = obj['matricule']
-            document.getElementsByName('marque')[0].value = obj['marque']
-            document.getElementsByName('modele')[0].value = obj['modele']
-            document.getElementsByName('prixJr')[0].value = obj['prixJr']
-            document.getElementsByName('age')[0].value = obj['age']
+            document.getElementsByName('id')[0].value = obj['idLocation']
+            document.getElementsByName('idClient')[0].value = obj['idClient']
+            document.getElementsByName('idVoiture')[0].value = obj['idVoiture']
+            document.getElementsByName('start')[0].value = obj['start']
+            document.getElementsByName('end')[0].value = obj['end']
 
         }
     </script>
@@ -36,7 +35,7 @@
     <% include nav %>
       <!-- ------------------------ -->
     <div class="container mt-4">
-        <h3 class="">Liste des voitures</h3>
+        <h3 class="">Liste des locations</h3>
         <div class="row mb-2">
             <form method="post" action="/voitures/search">
                 <input type="text" placeholder="search.." name="search" />
@@ -70,13 +69,18 @@
                         <%= list[i].fin%>
                     </td>
                     <td>
-                        <%= list[i].nbrJours%>
+                        <%= list[i].nbrJours %>
                     </td>
                     <td>
-                        <%= list[i].cin%>
+                        <a href='/clients/search?search=<%-list[i].cin%>'>
+                            <%= list[i].cin%> 
+                        </a>
                     </td>
-                    <td>
-                        <%= list[i].matricule%>
+                    <td> 
+
+                        <a href='/voitures/search?search=<%-list[i].matricule%>'>
+                            <%= list[i].matricule%> 
+                        </a>
                     </td>
                     <td>
                         <%= list[i].prixTotal%>
@@ -87,7 +91,7 @@
                     </td>
                     <td>
                         <form action="/locations/delete" method="post">
-                            <input hidden type="text" name="idLocation" value="<%=list[i].id%>">
+                            <input  hidden type="text" name="idLocation" value="<%-list[i].idLocation %>">
                             </input>
                             <input type="submit" value="Delete" class="btn btn-danger" />
                         </form>
@@ -113,7 +117,7 @@
                         <td>Date fin</td>
                     </tr>
                     <tr>
-                        <input type="text" name="id" hidden>
+                        <input hidden type="text" name="id" >
                         <td>
                             <select  name='idVoiture'>
                                 <% for(var i=0; i<listVoituresLength; i++) {%>
@@ -133,6 +137,7 @@
                               </select>
                             
                             </td>
+                            <!-- à refaire -->
                         <td> <input type="date" name="start" required></td>
                         <td> <input type="date" name="end" required></td>
                     </tr>
